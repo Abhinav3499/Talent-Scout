@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title mb-3">Candidate Questionnaire</h5>
+    <form
+      method="post"
+      enctype="multipart/form-data"
+      action="{{ url_for('start') }}"
+    >
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label class="form-label">Full Name</label>
+          <input name="name" class="form-control" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Email</label>
+          <input name="email" type="email" class="form-control" required />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">College</label>
+          <input name="college" class="form-control" required />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Resume (PDF)</label>
+        <input
+          type="file"
+          name="resume"
+          accept="application/pdf"
+          class="form-control"
+          required
+        />
+      </div>
+      <button class="btn btn-primary" type="submit">Generate Questions</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

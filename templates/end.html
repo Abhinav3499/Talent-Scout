@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<div class="text-center py-5">
+  <h1 class="display-4">Thank You!</h1>
+  <p class="lead">
+    Your screening is complete and has been submitted for review.
+  </p>
+  <p>Your submission reference ID is: <strong>{{ report_id }}</strong></p>
+  <hr class="my-4" />
+  <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg"
+    >Start a New Screening</a
+  >
+</div>
+{% endblock %}

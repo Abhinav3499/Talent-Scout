@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+<div class="chat-container mx-auto" style="max-width: 800px">
+  <div
+    class="progress mb-3"
+    role="progressbar"
+    aria-label="Interview Progress"
+    aria-valuenow="{{ progress.split('/')[0] }}"
+    aria-valuemin="0"
+    aria-valuemax="{{ progress.split('/')[1] }}"
+  >
+    <div
+      class="progress-bar"
+      style="width: {{ (progress.split('/')[0] | int / progress.split('/')[1] | int) * 100 }}%"
+    >
+      {{ progress }}
+    </div>
+  </div>
+
+  <div
+    class="chat-history mb-3 border rounded p-3"
+    style="height: 40vh; overflow-y: auto"
+  >
+    {% if not history %}
+    <p class="text-muted">
+      Your interview is starting. The first question is below.
+    </p>
+    {% endif %} {% for item in history %}
+    <div class="mb-2">
+      <p class="mb-0 text-secondary"><strong>Q:</strong> {{ item.question }}</p>
+      <p><strong>A:</strong> {{ item.answer }}</p>
+    </div>
+    <hr />
+    {% endfor %}
+  </div>
+
+  <div class="current-question mb-3">
+    <h5>Question:</h5>
+    <p class="lead">{{ current_question }}</p>
+  </div>
+
+  <form method="post" action="{{ url_for('chat') }}">
+    <div class="input-group">
+      <textarea
+        name="answer"
+        class="form-control"
+        placeholder="Your answer..."
+        required
+        rows="4"
+        autofocus
+      ></textarea>
+      <button class="btn btn-primary" type="submit">Send Answer</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
